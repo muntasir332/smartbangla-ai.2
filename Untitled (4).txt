@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartBangla.AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-50 text-gray-800">
+  <header class="bg-green-600 text-white p-4 shadow-md">
+    <h1 class="text-3xl font-bold text-center">🌿 SmartBangla.AI</h1>
+    <p class="text-center">AI-powered Environmental & Disaster Assistant for Bangladesh 🇧🇩</p>
+  </header>
+
+  <main class="p-4 space-y-6 max-w-2xl mx-auto">
+    <!-- Flood Prediction -->
+    <section class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-2xl font-bold">🌊 Flood Alert System</h2>
+      <p>Check flood risk in your area based on past data and rainfall.</p>
+      <input type="text" placeholder="Enter your district" class="border p-2 rounded w-full mt-2" id="floodInput">
+      <button onclick="predictFlood()" class="mt-2 bg-green-600 text-white px-4 py-2 rounded">Check Risk</button>
+      <p id="floodResult" class="mt-2 font-semibold"></p>
+    </section>
+
+    <!-- Agriculture Advisor -->
+    <section class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-2xl font-bold">🌾 Smart Agriculture Advisor</h2>
+      <p>Get farming advice based on your soil and weather condition.</p>
+      <select id="season" class="border p-2 rounded mt-2 w-full">
+        <option value="summer">Summer</option>
+        <option value="monsoon">Monsoon</option>
+        <option value="winter">Winter</option>
+      </select>
+      <button onclick="suggestCrop()" class="mt-2 bg-green-600 text-white px-4 py-2 rounded">Get Suggestion</button>
+      <p id="cropResult" class="mt-2 font-semibold"></p>
+    </section>
+
+    <!-- Urban Heat Mapping -->
+    <section class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-2xl font-bold">🌇 Urban Heat Map Alert</h2>
+      <p>Find which areas need more greenery to reduce heat.</p>
+      <p class="mt-2">🔺 High risk in Dhanmondi, Motijheel and Mirpur. More trees needed.</p>
+    </section>
+
+    <!-- Waste Management -->
+    <section class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-2xl font-bold">🗑️ Waste Sorting Guide</h2>
+      <p>Type of waste and how to manage them properly.</p>
+      <p class="mt-2">♻️ Plastic: Recyclable - Use separate bin.<br>🍌 Organic: Compostable - Use in compost for fertilizer.<br>☣️ Toxic: Handle with care.</p>
+    </section>
+
+    <!-- Cyclone Planner -->
+    <section class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-2xl font-bold">🌪️ Cyclone Impact Planner</h2>
+      <p>Plan ahead by knowing past cyclone risks in your district.</p>
+      <p class="mt-2">⚠️ Khulna & Satkhira are most vulnerable. Prepare shelters and supplies early.</p>
+    </section>
+
+    <!-- Air Quality Monitor -->
+    <section class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-2xl font-bold">💨 Air Quality Monitor</h2>
+      <p>Today’s AQI in Dhaka: <span class="font-bold">180 (Unhealthy)</span></p>
+      <p class="mt-1">😷 Please wear masks and avoid outdoor activity if possible.</p>
+    </section>
+
+    <!-- Tree Plantation Advisor -->
+    <section class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-2xl font-bold">🌳 Tree Plantation Advisor</h2>
+      <p>Find which trees grow best in your district to combat climate change.</p>
+      <input type="text" id="treeDistrict" placeholder="Enter your district" class="border p-2 rounded w-full mt-2">
+      <button onclick="suggestTree()" class="mt-2 bg-green-600 text-white px-4 py-2 rounded">Suggest Tree</button>
+      <p id="treeResult" class="mt-2 font-semibold"></p>
+    </section>
+
+    <!-- Fisherman Forecast -->
+    <section class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-2xl font-bold">🌊 Fisherman’s Forecast</h2>
+      <p>Check tide and weather for fishing safety.</p>
+      <p class="mt-2">🌤️ Next Safe Window: 4 AM – 9 AM (Low tide)</p>
+      <p class="mt-1 text-red-600">⚠️ High wind warning tomorrow afternoon.</p>
+    </section>
+
+    <!-- Community Broadcast Alert -->
+    <section class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-2xl font-bold">📢 Local Emergency Alerts</h2>
+      <p>Share emergency news to alert your community.</p>
+      <input type="text" placeholder="Your message (e.g., Water level rising in Jamalpur!)" class="border p-2 rounded w-full mt-2" id="alertMessage">
+      <button onclick="broadcastAlert()" class="mt-2 bg-green-600 text-white px-4 py-2 rounded">Broadcast</button>
+      <div id="broadcasts" class="mt-4 space-y-1 text-sm text-red-700 font-semibold"></div>
+    </section>
+
+    <!-- School Air Monitor -->
+    <section class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-2xl font-bold">🏫 School Air Safety</h2>
+      <p>Today’s student air safety in rural areas:</p>
+      <p class="mt-2 text-yellow-600">⚠️ Moderate in Dinajpur: Avoid outdoor sports.</p>
+      <p class="text-red-600">❌ Unhealthy in Dhaka: Recommend online classes if possible.</p>
+    </section>
+
+    <!-- Climate Tip of the Day -->
+    <section class="bg-white rounded-2xl shadow p-4">
+      <h2 class="text-2xl font-bold">🌟 Daily Climate Tip</h2>
+      <p id="climateTip" class="mt-2 italic text-green-800"></p>
+    </section>
+  </main>
+
+  <footer class="text-center text-sm p-4 text-gray-500">
+    Made with ❤️ for Bangladesh by Muntasir
+  </footer>
+
+  <script>
+    function predictFlood() {
+      const input = document.getElementById("floodInput").value.trim().toLowerCase();
+      let result;
+      if (["sylhet", "kurigram", "gaibandha"].includes(input)) {
+        result = "⚠️ High flood risk detected. Please prepare to evacuate if needed.";
+      } else if (!input) {
+        result = "❗ Please enter a valid district name.";
+      } else {
+        result = "✅ No major flood risks right now in your district.";
+      }
+      document.getElementById("floodResult").innerText = result;
+    }
+
+    function suggestCrop() {
+      const season = document.getElementById("season").value;
+      let suggestion;
+      if (season === "summer") {
+        suggestion = "Recommended crop: Jute or Sesame.";
+      } else if (season === "monsoon") {
+        suggestion = "Recommended crop: Aman Rice or Maize.";
+      } else {
+        suggestion = "Recommended crop: Potato or Mustard.";
+      }
+      document.getElementById("cropResult").innerText = suggestion;
+    }
+
+    function suggestTree() {
+      const dist = document.getElementById("treeDistrict").value.toLowerCase();
+      let tree;
+      if (dist === "sundarbans" || dist === "khulna") {
+        tree = "Recommended: Sundari or Gewa (good for saline zones)";
+      } else if (dist === "rangamati" || dist === "bandarban") {
+        tree = "Recommended: Teak or Garjan (good for hilly areas)";
+      } else {
+        tree = "Recommended: Neem or Mahogany (suitable for most regions)";
+      }
+      document.getElementById("treeResult").innerText = tree;
+    }
+
+    function broadcastAlert() {
+      const msg = document.getElementById("alertMessage").value;
+      const list = document.getElementById("broadcasts");
+      if (msg.trim() !== "") {
+        const p = document.createElement("p");
+        p.textContent = "🚨 " + msg;
+        list.prepend(p);
+      }
+    }
+
+    const tips = [
+      "Use a clay water pot instead of plastic bottles.",
+      "Plant one tree every month near your home.",
+      "Turn off lights when not needed — save power.",
+      "Avoid burning garbage — it pollutes your air.",
+      "Compost your kitchen waste for free fertilizer!"
+    ];
+    document.getElementById("climateTip").innerText = tips[Math.floor(Math.random() * tips.length)];
+  </script>
+</body>
+</html>
